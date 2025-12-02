@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posto de Medicamentos Retiro</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="logo-farmacia.png" alt="Posto de Medicamentos Retiro">
+            </a>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#inicio" class="active">Início</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#feedback">Feedbacks</a></li> <li><a href="#contato" class="btn btn-primary">Contato</a></li>
+                </ul>
+            </nav>
+
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Posto de Medicamentos Retiro</h1>
+            <p>Cuidado, atenção e medicamentos com confiança.</p>
+            <a href="#servicos" class="btn btn-secondary">Conheça nossos serviços</a>
+        </div>
+    </section>
+
+
+    <section class="pilares" id="servicos">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <p class="subtitle">Qualidade, responsabilidade e atendimento humanizado.</p>
+
+            <div class="slider-container">
+                <div class="pilar-slider-viewport">
+                    <div class="pilar-slider-track" id="pilar-track">
+
+                        <div class="pilar-card">
+                            <div class="pilar-icon"><i class="fas fa-pills"></i></div>
+                            <h3>Orientação ao Cliente</h3>
+                            <p>Apoio naa escolha de produtos de acordo com suas necessidades.</p>
+                        </div>
+
+                        <div class="pilar-card">
+                            <div class="pilar-icon"><i class="fas fa-syringe"></i></div>
+                            <h3>Cuidados Básicos de Saùde</h3>
+                            <p>Conteúdos e orientações para hábitos mais saudáveis.</p>
+                        </div>
+
+                        <div class="pilar-card">
+                            <div class="pilar-icon"><i class="fas fa-soap"></i></div>
+                            <h3>Perfumaria e Higiene</h3>
+                            <p>Produtos de beleza e cuidados pessoais.</p>
+                        </div>
+
+                        <div class="pilar-card">
+                            <div class="pilar-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                            <h3>Atendimento Humanizado</h3>
+                            <p>Com carinho, atenção e respeito.</p>
+                        </div>
+
+                        <div class="pilar-card">
+                            <div class="pilar-icon"><i class="fas fa-capsules"></i></div>
+                            <h3>Vitaminas e Suplementos</h3>
+                            <p>Cuidado contínuo com sua saúde.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <button id="pilar-prev" class="slider-btn">&lt;</button>
+                <button id="pilar-next" class="slider-btn">&gt;</button>
+                <div class="slider-dots" id="pilar-dots"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="sobre" id="sobre">
+        <div class="container">
+            <div class="sobre-img">
+                <img src="farmacia-foto1.png" alt="Interior da Farmácia">
+            </div>
+
+            <div class="sobre-text">
+                <h2>Cuidar da sua saúde é nossa missão</h2>
+                <p>Oferecemos medicamentos, produtos de cuidado e orientação profissional para garantir a segurança e bem-estar de toda a comunidade.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="destaque-vendedora" id="destaque-vendedora1">
+        <div class="container">
+            <div class="vendedora-img">
+                <img src="fotoLarissa.jpg" alt="Foto da Vendedora Larissa">
+            </div>
+            <div class="vendedora-info">
+                <h2>Fale com a nossa equipe!</h2>
+                <p class="subtitle-dark">Nossa especialista Larissa está pronta para te atender no WhatsApp.</p>
+                
+                <div class="vendedora-detalhes">
+                    <p><i class="fas fa-phone"></i> Telefone: (84) 99695-3666</p>
+                    <p><i class="fas fa-clock"></i> Horário: Seg a Sex: 7h às 17h | Sab e Dom: 9h às 16h</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Local: Rua Exemplo, 123 – Retiro</p>
+                </div>
+                
+                <a href="https://wa.me/5584996953666" target="_blank" class="btn btn-primary large-btn">
+                    <i class="fab fa-whatsapp"></i> Entre em Contato Agora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="destaque-vendedora2" id="destaque-vendedor2">
+        <div class="container">
+            <div class="vendedora-img">
+                <img src="fotoIngrid.jpg" alt="Foto da Vendedora Ingrid">
+            </div>
+            <div class="vendedora-info">
+                <h2>Fale com a nossa equipe!</h2>
+                <p class="subtitle-dark">Nossa especialista Ingrid está pronta para te atender no WhatsApp.</p>
+                
+                <div class="vendedora-detalhes">
+                    <p><i class="fas fa-phone"></i> Telefone: (84) 99620-2683</p>
+                    <p><i class="fas fa-clock"></i> Horário: Seg a Sex: 7h às 17h | Sáb e Dom: 9h às 16h</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Local: Rua Exemplo, 123 – Retiro</p>
+                </div>
+                
+                <a href="https://wa.me/5584996202683" target="_blank" class="btn btn-primary large-btn">
+                    <i class="fab fa-whatsapp"></i> Entre em Contato Agora
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="feedback" id="feedback">
+        <div class="container">
+            <h2>O que dizem os nossos clientes</h2>
+            <p class="subtitle">A sua opinião é o que nos move.</p>
+
+            <div class="slider-container">
+                <div class="feedback-slider-viewport">
+                    <div class="feedback-slider-track" id="feedback-track">
+
+                        <div class="feedback-card">
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="feedback-text">"Atendimento excelente e rápido! A farmacêutica é muito atenciosa e ajudou com todas as minhas dúvidas."</p>
+                            <p class="client-name">- Maria S.</p>
+                        </div>
+
+                        <div class="feedback-card">
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="feedback-text">"Fiquei muito satisfeita com a variedade de produtos de higiene. Preços justos e organização impecável."</p>
+                            <p class="client-name">- João P.</p>
+                        </div>
+
+                        <div class="feedback-card">
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="feedback-text">"É o meu posto de medicamentos de confiança. Sempre encontro o que preciso, com a melhor orientação."</p>
+                            <p class="client-name">- Ana L.</p>
+                        </div>
+                        
+                        <div class="feedback-card">
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                            </div>
+                            <p class="feedback-text">"Serviço rápido e com muita simpatia! Recomendo a todos da região do Retiro."</p>
+                            <p class="client-name">- Pedro R.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <button id="feedback-prev" class="slider-btn">&lt;</button>
+                <button id="feedback-next" class="slider-btn">&gt;</button>
+                <div class="slider-dots" id="feedback-dots"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="contato" id="contato">
+        <div class="container">
+            <h2 class="center-title">Entre em Contato</h2>
+            <p class="subtitle center-subtitle white-text">Estamos sempre prontos para ajudar você.</p>
+
+            <div class="contato-content-centralizado">
+                <div class="contato-info-center">
+                    <h3>Nossos Dados</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Exemplo, 123 – Retiro</p>
+                    <p><i class="fas fa-clock"></i> Seg a Sáb: 8h às 20h</p>
+                    <p><i class="fas fa-phone"></i> (00) 1234-5678</p>
+
+                    <a href="mailto:contato@farmacia.com" class="btn btn-secondary email-btn">
+                        <i class="fas fa-envelope"></i> Enviar Email
+                    </a>
+                </div>
+
+                <div class="contato-mapa-center">
+                    <img src="mapa-localizacao.png" alt="Mapa">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-col">
+                <img src="logo-farmacia.png" class="footer-logo" alt="Logo">
+                <p>Saúde e confiança para sua família.</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Links</h3>
+                <a href="#inicio">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#sobre">Sobre Nós</a>
+                <a href="#feedback">Feedbacks</a> </div>
+
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <p><i class="fas fa-phone"></i> (00) 1234-5678</p>
+                <p><i class="fas fa-envelope"></i> contato@farmacia.com</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Posto de Medicamentos Retiro — Todos os direitos reservados
+        </div>
+    </footer>
+
+<script src="script.js"></script>
+</body>
+</html>

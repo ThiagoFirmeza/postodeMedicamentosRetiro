@@ -1,0 +1,679 @@
+/* ===============================
+   VARIÁVEIS
+================================ */
+:root {
+    --primary: #00AEEF;
+    --primary-dark: #008ACF;
+    --background: #0f0f0f;
+    --section: #161616;
+    --card: #1f1f1f;
+    --text: #fff;
+    --text-soft: #bfbfbf;
+    --text-dark: #333;
+    --radius: 14px;
+    --shadow: 0 6px 20px rgba(0,0,0,0.25);
+    --max-width: 1200px;
+}
+
+/* ===============================
+   RESET
+================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul { list-style: none !important; }
+a { text-decoration: none; color: inherit; }
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: "Nunito", sans-serif;
+    overflow-x: hidden;
+}
+
+/* Container */
+.container {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 0 25px;
+}
+
+/* ===============================
+   NAVBAR
+================================ */
+.navbar {
+    background: var(--section);
+    padding: 15px 0;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: fadeDown 0.7s ease;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    max-height: 200px;
+    margin-top: -60px;
+    margin-bottom: -50px;
+    width: auto;
+    display: block;
+}
+
+/* Menu */
+.nav-menu ul {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-menu a {
+    font-weight: 700;
+    padding: 5px 0;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover,
+.nav-menu .active {
+    color: var(--primary);
+}
+
+/* Mobile Menu Toggle (Estilo visual) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--text);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+}
+
+/* ===============================
+   HERO
+================================ */
+.hero {
+    padding: 120px 0;
+    text-align: center;
+    background: linear-gradient(180deg, #0d0d0d, #161616);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    animation: fadeUp 0.8s ease;
+}
+
+.hero p {
+    margin-top: 10px;
+    font-size: 1.3rem;
+    color: var(--text-soft);
+    animation: fadeUp 1s ease;
+}
+
+/* ===============================
+   BOTÕES
+================================ */
+.btn {
+    padding: 14px 32px;
+    border-radius: var(--radius);
+    display: inline-block;
+    font-weight: 700;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #000;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-secondary:hover {
+    background: var(--primary);
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* Botão maior */
+.large-btn {
+    font-size: 1.1rem;
+    margin-top: 25px;
+    padding: 16px 40px;
+}
+
+/* ===============================
+   TITULOS E SUBTITULOS
+================================ */
+.pilares h2, .feedback h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary);
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--text-soft);
+}
+
+/* ===============================
+   SERVIÇOS (PILARES)
+================================ */
+.pilares {
+    padding: 100px 0;
+    background: var(--background);
+}
+
+/* Slider Shared Styles */
+.slider-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.pilar-slider-viewport, .feedback-slider-viewport {
+    overflow: hidden;
+}
+
+.pilar-slider-track, .feedback-slider-track {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.5s ease;
+}
+
+.pilar-card {
+    min-width: calc(33.3% - 20px);
+    background: var(--card);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+    animation: fadeUp 0.6s ease;
+}
+
+.pilar-card:hover {
+    transform: translateY(-6px);
+}
+
+/* Ícones */
+.pilar-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+/* Slider buttons (Shared) */
+.slider-btn {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    background: var(--primary);
+    border: none;
+    padding: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 50;
+}
+
+.slider-btn:hover {
+    background: var(--primary-dark);
+}
+
+#pilar-prev, #feedback-prev { left: 0; }
+#pilar-next, #feedback-next { right: 0; }
+
+/* Dots (Shared) */
+.slider-dots {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.slider-dots button {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    border: none;
+    margin: 0 5px;
+    background: #555;
+}
+
+.slider-dots .active {
+    background: var(--primary);
+}
+
+/* ===============================
+   SOBRE
+================================ */
+.sobre {
+    background: var(--section);
+    padding: 100px 0;
+}
+
+.sobre .container {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+.sobre-img {
+    flex: 1; /* Garante que a imagem use o espaço disponível */
+    max-width: 50%; /* Limita o tamanho no desktop */
+}
+
+.sobre-img img {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.sobre-text {
+    flex: 1;
+    max-width: 50%; /* Limita o tamanho no desktop */
+}
+
+.sobre-text h2 {
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.sobre-text p {
+    margin-bottom: 30px;
+}
+
+
+/* ===============================
+   DESTAQUE VENDEDORA (Geral)
+================================ */
+/* Estilos gerais para ambas as seções de destaque */
+.destaque-vendedora, .destaque-vendedora2 {
+    padding: 100px 0;
+    color: var(--text-dark);
+}
+
+/* Corrigido: Usando um seletor mais genérico para evitar repetição e garantir que ambas as seções funcionem */
+.destaque-vendedora .container, .destaque-vendedora2 .container {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.destaque-vendedora {
+    background: #fff; /* Fundo branco para a Larissa */
+}
+
+.destaque-vendedora2 {
+    background: #f0f0f0; /* Fundo levemente cinza para a Ingrid (diferenciação visual) */
+}
+
+.vendedora-img {
+    flex: 0 0 300px; /* Mantém o tamanho fixo no desktop */
+    text-align: center;
+}
+
+.vendedora-img img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.vendedora-info {
+    flex: 1;
+}
+
+.vendedora-info h2 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.vendedora-info .subtitle-dark {
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.vendedora-detalhes p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.vendedora-detalhes i {
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+
+/* ===============================
+   FEEDBACKS
+================================ */
+.feedback {
+    padding: 100px 0;
+    background: var(--background);
+}
+
+.feedback .subtitle {
+    color: var(--text-soft);
+}
+
+.feedback-card {
+    min-width: calc(33.3% - 20px);
+    background: var(--card);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+.rating {
+    color: #ffc107;
+    margin-bottom: 15px;
+}
+
+.rating .fas, .rating .far {
+    font-size: 1.2rem;
+}
+
+.feedback-text {
+    font-size: 1.1rem;
+    color: var(--text-soft);
+    margin-bottom: 15px;
+}
+
+.client-name {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+
+/* ===============================
+   CONTATO (Centralizado)
+================================ */
+.contato {
+    padding: 100px 0;
+    text-align: center;
+    background: var(--primary-dark); /* Adiciona um fundo para destaque */
+}
+
+/* Estilos para centralizar */
+.center-title {
+    color: #fff; /* Título em branco */
+    text-align: center;
+}
+
+.white-text {
+    color: var(--text);
+    margin-bottom: 40px;
+}
+
+.contato-content-centralizado {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinhamento ao topo para melhor visualização no desktop */
+    gap: 40px;
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+}
+
+.contato-info-center {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    background: #fff; /* Fundo branco para a caixa de informações */
+    color: var(--text-dark);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.contato-info-center h3 {
+    margin-bottom: 20px;
+    color: var(--primary-dark); /* Ajuste de cor para contraste */
+}
+
+.contato-info-center p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.contato-info-center i {
+    color: var(--primary);
+    margin-right: 8px;
+}
+
+.contato-mapa-center {
+    max-width: 600px;
+    width: 100%;
+}
+
+.contato-mapa-center img {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.email-btn {
+    margin-top: 25px;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.footer {
+    background: var(--section);
+    padding: 40px 0;
+    border-top: 1px solid #222;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.footer-logo {
+    height: 50px;
+    filter: invert(100%);
+    margin-bottom: 10px;
+}
+
+.footer-col h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.footer-col p,
+.footer-col a {
+    color: var(--text-soft);
+    margin-bottom: 8px;
+    transition: 0.3s;
+    display: block;
+}
+
+.footer-col a:hover {
+    color: var(--primary);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #222;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+}
+
+/* ===============================
+   ANIMAÇÕES SUAVES
+================================ */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===============================
+   MEDIA QUERIES - MOBILE
+================================ */
+@media (max-width: 768px) {
+    /* Container */
+    .container {
+        padding: 0 15px;
+    }
+
+    /* NAV & HERO */
+    .logo img {
+        max-height: 80px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .menu-toggle { display: flex; }
+    
+    .nav-menu {
+        display: none; /* Escondido por padrão no mobile */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 90px;
+        left: 0;
+        background: var(--section);
+        box-shadow: var(--shadow);
+        padding: 15px 0;
+        z-index: 999;
+    }
+
+    .nav-menu.open {
+        display: flex; /* Visível quando a classe 'open' for adicionada pelo JS */
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: 10px 0;
+    }
+
+    /* SOBRE e DESTAQUE */
+    .sobre, .destaque-vendedora, .destaque-vendedora2, .feedback, .contato {
+        padding: 80px 0;
+    }
+    
+    .sobre .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sobre-img, .sobre-text {
+        max-width: 100%; /* Ajuste para ocupar toda a largura */
+    }
+    
+    .destaque-vendedora .container, .destaque-vendedora2 .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .vendedora-img {
+        flex: auto;
+        margin-bottom: 20px;
+    }
+
+    .vendedora-img img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .vendedora-info {
+        text-align: center;
+    }
+
+    .vendedora-info .subtitle-dark {
+        text-align: center;
+    }
+
+    /* CARDS */
+    .pilar-card, .feedback-card {
+        min-width: 100%;
+        padding: 30px;
+    }
+    
+    .pilar-slider-track, .feedback-slider-track {
+        gap: 0;
+    }
+    
+    /* Esconde botões de slider no mobile, se for 100% */
+    .slider-btn, .slider-dots {
+        display: none;
+    }
+
+    /* CONTATO */
+    .contato-content-centralizado {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contato-mapa-center,
+    .contato-info-center {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Footer */
+    .footer .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .footer-col {
+        margin-bottom: 20px;
+        width: 100%;
+        padding: 40px;
+    }
+}
