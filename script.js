@@ -1,56 +1,59 @@
 // O restante do seu código JS...
 
 // 2. Funcionalidade dos Sliders (PILARES e FEEDBACK)
-function setupSlider(trackId, prevBtnId, nextBtnId, dotsId, visibleItems = 3) {
+/**
+ * Configura um carrossel responsivo.
+ * @param {string} trackId - O ID do elemento que contém os slides (track).
+ * @param {string} prevBtnId - O ID do botão de navegação anterior.
+ * @param {string} nextBtnId - O ID do botão de navegação próximo.
+ * @param {string} dotsId - O ID do contêiner dos indicadores (dots).
+ * @param {number} initialVisibleItems - O número de itens visíveis no desktop.
+ */
+function setupSlider(trackId, prevBtnId, nextBtnId, dotsId, initialVisibleItems = 3) {
     const track = document.getElementById(trackId);
     const prevBtn = document.getElementById(prevBtnId);
     const nextBtn = document.getElementById(nextBtnId);
     const dotsContainer = document.getElementById(dotsId);
     const cards = Array.from(track.children);
     let currentIndex = 0;
+    let maxIndex = 0;
+    let visibleItems = initialVisibleItems;
 
     if (cards.length === 0) return;
 
-    // Calcula o número total de páginas (grupos de slides)
-    // O número de slides que você pode mover é o total de cards menos os visíveis.
-    const maxIndex = cards.length - visibleItems;
+    // --- Funções Auxiliares ---
 
-    // Se o número de cards for menor ou igual ao número de itens visíveis, não precisa de slider
-    if (maxIndex <= 0 && window.innerWidth > 768) {
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
-        dotsContainer.style.display = 'none';
-        return;
+    // Função para (re)criar/atualizar os indicadores (dots)
+    function updateDots() {
+        dotsContainer.innerHTML = ''; // Limpa os dots existentes
+        
+        // Cria um dot para cada movimento possível (até o maxIndex)
+        for (let i = 0; i <= maxIndex; i++) {
+            const dot = document.createElement('button');
+            dot.addEventListener('click', () => {
+                moveToSlide(i);
+            });
+            dotsContainer.appendChild(dot);
+        }
     }
-
-
-    // Cria os indicadores (dots)
-    // Cria dots apenas para os movimentos possíveis (maxIndex + 1, pois começa em 0)
-    for (let i = 0; i < cards.length; i++) {
-        const dot = document.createElement('button');
-        // O dot não move diretamente para o índice 'i', mas sim para a 'página' correspondente
-        dot.addEventListener('click', () => {
-            const targetIndex = Math.min(i, maxIndex);
-            moveToSlide(targetIndex);
-        });
-        dotsContainer.appendChild(dot);
-    }
-    const dots = Array.from(dotsContainer.children);
 
     // Função para mover para o slide
     function moveToSlide(index) {
         // Garante que o índice não saia dos limites
         if (index < 0) {
-            index = 0; // Para no início
+            index = 0;
         } else if (index > maxIndex) {
-            index = maxIndex; // Para no final
+            index = maxIndex;
         }
         currentIndex = index;
 
         // Cálculo da translação
-        const cardWidth = cards[0].offsetWidth;
+        // Certifique-se de que os cards existam antes de tentar acessar offsetWidth
+        const cardWidth = cards.length > 0 ? cards[0].offsetWidth : 0;
         const gap = 30; // Definido no CSS
-        const moveDistance = currentIndex * (cardWidth + gap); // Move apenas um card por vez
+        
+        // Distância de movimento: (Índice do card) * (Largura do Card + Gap)
+        const moveDistance = currentIndex * (cardWidth + gap); 
         
         track.style.transform = `translateX(-${moveDistance}px)`;
 
@@ -61,11 +64,13 @@ function setupSlider(trackId, prevBtnId, nextBtnId, dotsId, visibleItems = 3) {
         nextBtn.style.opacity = currentIndex === maxIndex ? '0.5' : '1';
 
         // Atualiza os indicadores (dots)
+        const dots = Array.from(dotsContainer.children);
         dots.forEach((dot, i) => {
-            // O dot ativo é o que corresponde ao card atualmente em foco
             dot.classList.toggle('active', i === currentIndex);
         });
     }
+
+    // --- Navegação e Responsividade ---
 
     // Navegação por botões
     prevBtn.addEventListener('click', () => moveToSlide(currentIndex - 1));
@@ -73,32 +78,49 @@ function setupSlider(trackId, prevBtnId, nextBtnId, dotsId, visibleItems = 3) {
 
     // Ajuste no redimensionamento da janela (Responsividade)
     function handleResize() {
-        if (window.innerWidth <= 768) {
-            // Desativa/esconde o slider no mobile
-            track.style.transform = 'translateX(0)';
+        // 1. Redefine o número de itens visíveis (Desktop vs Mobile)
+        const isMobile = window.innerWidth <= 768;
+        // 1 item visível no mobile, e o valor inicial no desktop
+        visibleItems = isMobile ? 1 : initialVisibleItems; 
+
+        // 2. Recalcula o maxIndex (Número de movimentos possíveis)
+        // maxIndex é o número total de cards menos o número de cards visíveis
+        maxIndex = Math.max(0, cards.length - visibleItems);
+
+        // 3. Controla a visibilidade e o comportamento
+        if (cards.length <= visibleItems) {
+            // Se não precisa de carrossel, desativa/esconde tudo
             dotsContainer.style.display = 'none';
             prevBtn.style.display = 'none';
             nextBtn.style.display = 'none';
+            track.style.transform = 'translateX(0)';
+            return;
         } else {
-            // Ativa/mostra o slider no desktop
-            dotsContainer.style.display = 'block';
+            // Se precisa de carrossel, exibe os elementos de navegação
+            // Note: Use 'flex' ou 'block' dependendo de como você estilizou os dots
+            dotsContainer.style.display = 'flex'; 
             prevBtn.style.display = 'block';
             nextBtn.style.display = 'block';
-            // Garante que o slider esteja na posição correta ao redimensionar
-            moveToSlide(currentIndex); 
         }
+
+        // 4. Atualiza os dots e a posição do slide
+        updateDots();
+        // Garante que o currentIndex não seja maior que o novo maxIndex
+        currentIndex = Math.min(currentIndex, maxIndex);
+        moveToSlide(currentIndex); 
     }
 
     window.addEventListener('resize', handleResize);
 
-    // Inicialização
-    handleResize();
-    if (window.innerWidth > 768) {
-        moveToSlide(0);
-    }
+    // --- Inicialização ---
+    
+    // Inicializa a responsividade e calcula os valores iniciais
+    handleResize(); 
+    // Garante que o carrossel comece na primeira posição
+    moveToSlide(0); 
 }
 
-// Inicializa o slider de Serviços
+// Inicializa o slider de Serviços (PILARES)
 setupSlider('pilar-track', 'pilar-prev', 'pilar-next', 'pilar-dots', 3);
 
 // Inicializa o slider de Feedbacks
