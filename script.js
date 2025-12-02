@@ -1,6 +1,9 @@
 // O restante do seu código JS...
 
+// =================================================================
 // 2. Funcionalidade dos Sliders (PILARES e FEEDBACK)
+// =================================================================
+
 /**
  * Configura um carrossel responsivo.
  * @param {string} trackId - O ID do elemento que contém os slides (track).
@@ -48,7 +51,6 @@ function setupSlider(trackId, prevBtnId, nextBtnId, dotsId, initialVisibleItems 
         currentIndex = index;
 
         // Cálculo da translação
-        // Certifique-se de que os cards existam antes de tentar acessar offsetWidth
         const cardWidth = cards.length > 0 ? cards[0].offsetWidth : 0;
         const gap = 30; // Definido no CSS
         
@@ -80,11 +82,9 @@ function setupSlider(trackId, prevBtnId, nextBtnId, dotsId, initialVisibleItems 
     function handleResize() {
         // 1. Redefine o número de itens visíveis (Desktop vs Mobile)
         const isMobile = window.innerWidth <= 768;
-        // 1 item visível no mobile, e o valor inicial no desktop
         visibleItems = isMobile ? 1 : initialVisibleItems; 
 
         // 2. Recalcula o maxIndex (Número de movimentos possíveis)
-        // maxIndex é o número total de cards menos o número de cards visíveis
         maxIndex = Math.max(0, cards.length - visibleItems);
 
         // 3. Controla a visibilidade e o comportamento
@@ -97,7 +97,6 @@ function setupSlider(trackId, prevBtnId, nextBtnId, dotsId, initialVisibleItems 
             return;
         } else {
             // Se precisa de carrossel, exibe os elementos de navegação
-            // Note: Use 'flex' ou 'block' dependendo de como você estilizou os dots
             dotsContainer.style.display = 'flex'; 
             prevBtn.style.display = 'block';
             nextBtn.style.display = 'block';
@@ -105,7 +104,6 @@ function setupSlider(trackId, prevBtnId, nextBtnId, dotsId, initialVisibleItems 
 
         // 4. Atualiza os dots e a posição do slide
         updateDots();
-        // Garante que o currentIndex não seja maior que o novo maxIndex
         currentIndex = Math.min(currentIndex, maxIndex);
         moveToSlide(currentIndex); 
     }
@@ -113,10 +111,7 @@ function setupSlider(trackId, prevBtnId, nextBtnId, dotsId, initialVisibleItems 
     window.addEventListener('resize', handleResize);
 
     // --- Inicialização ---
-    
-    // Inicializa a responsividade e calcula os valores iniciais
     handleResize(); 
-    // Garante que o carrossel comece na primeira posição
     moveToSlide(0); 
 }
 
@@ -125,3 +120,35 @@ setupSlider('pilar-track', 'pilar-prev', 'pilar-next', 'pilar-dots', 3);
 
 // Inicializa o slider de Feedbacks
 setupSlider('feedback-track', 'feedback-prev', 'feedback-next', 'feedback-dots', 3);
+
+
+// =================================================================
+// 3. Funcionalidade do Menu Hamburguer
+// =================================================================
+
+/**
+ * Configura o botão de toggle para o menu móvel.
+ * @param {string} toggleId - O ID do botão/ícone do menu (ex: 'menu-toggle').
+ * @param {string} menuId - O ID do menu de navegação (ex: 'main-nav').
+ */
+function setupMobileMenu(toggleId, menuId) {
+    const navToggle = document.getElementById(toggleId);
+    const navMenu = document.getElementById(menuId);
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            // Alterna a classe 'active' para mostrar/esconder o menu
+            navMenu.classList.toggle('active');
+            
+            // Opcional: Alterna a classe 'is-open' no ícone para transformá-lo em 'X'
+            navToggle.classList.toggle('is-open'); 
+        });
+    }
+}
+
+// Inicializa a funcionalidade do Menu
+// **SUBSTITUA** 'nav-toggle-icon' e 'main-nav' pelos IDs reais no seu HTML
+// O ícone na sua imagem parece estar dentro do cabeçalho.
+document.addEventListener('DOMContentLoaded', () => {
+    setupMobileMenu('nav-toggle-icon', 'main-nav'); 
+});
